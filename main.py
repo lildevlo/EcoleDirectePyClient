@@ -1,9 +1,12 @@
+import subprocess
+import sys
 import tkinter
 from tkinter import *
 import http.client
 import json
 import os
 import ctypes
+
 
 
 def connect():
@@ -27,7 +30,6 @@ def connect():
         username = f.read()
     with open('C:/Users/Public/uPass.txt', encoding="utf-8") as f:
         password = f.read()
-
 
     conn = http.client.HTTPSConnection("api.ecoledirecte.com")
     payload = 'data={"identifiant":' + f'"{username}"' + ',"motdepasse":' + f'"{password}"' + '}'
@@ -53,6 +55,11 @@ def connect():
     if error == 505:
         InvalidPassOrUn = ctypes.windll.user32.MessageBoxW
         InvalidPassOrUn(None, 'Votre nom d utilisateur ou votre not de passe est invalide.', 'Erreur', 0)
+    else:
+      Success = ctypes.windll.user32.MessageBoxW
+      Success(None, 'Bienvenue dans EcoleDirecte - Client.', 'Bienvenue', 0)
+      subprocess.Popen(['python', 'win2.py'])
+      sys.exit(0)
 
 
 window = Tk()
