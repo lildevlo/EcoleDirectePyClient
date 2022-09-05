@@ -8,8 +8,10 @@ import os
 import ctypes
 
 
-
 def connect():
+    os.remove("C:/Users/Public/uName.txt")
+    os.remove("C:/Users/Public/uPass.txt")
+
     print("e")
 
     uName = T.get()
@@ -18,8 +20,6 @@ def connect():
     print(uName)
     print(uPass)
 
-    os.remove("C:/Users/Public/uName.txt")
-    os.remove("C:/Users/Public/uPass.txt")
 
     with open('C:/Users/Public/uName.txt', 'w') as f:
         f.write(T.get())
@@ -60,6 +60,7 @@ def connect():
       Success(None, 'Bienvenue dans EcoleDirecte - Client.', 'Bienvenue', 0)
       subprocess.Popen(['python', 'win2.py'])
       sys.exit(0)
+
 
 
 window = Tk()
