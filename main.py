@@ -9,8 +9,7 @@ import ctypes
 
 
 def connect():
-    os.remove("C:/Users/Public/uName.txt")
-    os.remove("C:/Users/Public/uPass.txt")
+
 
     print("e")
 
@@ -62,6 +61,8 @@ def connect():
       sys.exit(0)
 
 
+os.remove("C:/Users/Public/uName.txt")
+os.remove("C:/Users/Public/uPass.txt")
 
 window = Tk()
 
