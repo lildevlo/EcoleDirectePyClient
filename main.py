@@ -1,16 +1,14 @@
+import ctypes
+import os
 import subprocess
 import sys
 import tkinter
 from tkinter import *
-import http.client
 import json
-import os
-import ctypes
+import http.client
 
 
 def connect():
-
-
     print("e")
 
     uName = T.get()
@@ -18,7 +16,6 @@ def connect():
 
     print(uName)
     print(uPass)
-
 
     with open('C:/Users/Public/uName.txt', 'w') as f:
         f.write(T.get())
@@ -53,7 +50,8 @@ def connect():
     error = json.loads(data.decode("utf-8"))['code']
     if error == 505:
         InvalidPassOrUn = ctypes.windll.user32.MessageBoxW
-        InvalidPassOrUn(None, 'Votre nom d utilisateur ou votre not de passe est invalide.', 'Erreur', 0)
+        InvalidPassOrUn(None, 'Votre nom d utilisateur ou votre not de passe est invalide.', 'Erreur',0)
+
     else:
       Success = ctypes.windll.user32.MessageBoxW
       Success(None, 'Bienvenue dans EcoleDirecte - Client.', 'Bienvenue', 0)
@@ -61,8 +59,11 @@ def connect():
       sys.exit(0)
 
 
-os.remove("C:/Users/Public/uName.txt")
-os.remove("C:/Users/Public/uPass.txt")
+if os.path.exists("C:/Users/Public/uName.txt"):
+    os.remove("C:/Users/Public/uName.txt")
+
+if os.path.exists("C:/Users/Public/uPass.txt"):
+    os.remove("C:/Users/Public/uPass.txt")
 
 window = Tk()
 
@@ -78,7 +79,7 @@ T = tkinter.Entry(window)
 T.place(rely=0.35, relx=0.59, anchor='center', height=65)
 T.configure(font=("Calibri", 12, "bold"))
 
-T1 = tkinter.Entry(window)
+T1 = tkinter.Entry(window, show='*')
 T1.place(rely=0.50, relx=0.59, anchor='center', height=65)
 T1.configure(font=("Calibri", 12, "bold"))
 
