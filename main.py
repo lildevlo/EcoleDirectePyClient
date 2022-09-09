@@ -8,6 +8,7 @@ import json
 import http.client
 
 
+
 def connect():
     print("e")
 
@@ -48,11 +49,15 @@ def connect():
     res = conn.getresponse()
     data = res.read()
     error = json.loads(data.decode("utf-8"))['code']
+
+
     if error == 505:
+        print("connection not passed")
         InvalidPassOrUn = ctypes.windll.user32.MessageBoxW
         InvalidPassOrUn(None, 'Votre nom d utilisateur ou votre not de passe est invalide.', 'Erreur',0)
 
     else:
+      print("connection passed")
       Success = ctypes.windll.user32.MessageBoxW
       Success(None, 'Bienvenue dans EcoleDirecte - Client.', 'Bienvenue', 0)
       subprocess.Popen(['python', 'win2.py'])
